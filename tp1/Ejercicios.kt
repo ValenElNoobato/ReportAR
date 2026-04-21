@@ -5,6 +5,12 @@
 
 data class UserAccount(var uuid: String, var email: String, var balance: Double)
 
+class Book {
+    var title: String = ""
+    var author: String = ""
+    var pages: Int = 0
+}
+
 fun main() {
     
     println("Actividad 2")
@@ -22,6 +28,8 @@ fun main() {
     println("---")
     
     println("Actividad 4")  
+
+    test3()
 }
 
 /*
@@ -85,4 +93,98 @@ fun sumaTotal(montos: Array<Double?>) : Double {
    for (monto in montos) total += monto ?: 0.0  
 
    return total
+}
+
+/* Ejercicio 4
+ 
+* Funciones esPar() y esPrimo()
+* Creamos la función esPar()
+*/
+fun Int.esPar(): Boolean{
+    return this % 2 == 0
+}
+
+/* Creamos la función esPrimo()
+* Si el entero en cuestión es divisible por algún número menor, NO es primo. En otro caso sí.
+* Se itera sobre los números menores a la mitad del entero en cuestión, los únicos posibles
+* divisores.
+*/
+fun Int.esPrimo(): Boolean{
+    // Ningún entero menor o igual que 1 es primo (o compuesto)
+    if (this <= 1) return false
+
+    // 2 es primo
+    if (this == 2) return true
+
+    // Salvo 2, cualquier natural par es compuesto
+    if (this.esPar()) return false
+
+/* Si this tiene un divisor mayor que su raíz cuadrada, necesariamente tendrá otro menor que
+   ella (teorema matemático), y si tiene un divisor par distinto de 2, entonces también tiene
+   a 2 como divisor; así que basta con buscar algún divisor no mayor que su raíz cuadrada
+   entre los impares
+*/
+for (k in 3..Math.sqrt(this.toDouble()).toInt() step 2){
+    if (this % k == 0){
+        return false}}
+
+    // Si no se le encontraron otros divisores salvo 1 o this mismo, sí es primo.
+    return true
+}
+
+// Collections API: 
+
+// Movimientos financieros
+data class Transaccion(
+    val categoria: String,
+    val monto: Double
+)
+
+fun reporte(registros: List<Transaccion>): Map<String, Double>{
+    return registros.filter { it.monto > 100.0 }                // Descarta registros con monto no mayor a 100
+        .groupBy { it.categoria }                                // Agrupa por categoría
+        .mapValues { it.value.map { t -> t.monto }.average() }     // Promedia montos
+}
+
+fun test3() {
+   println("¿5 es par? ${5.esPar()}\n¿12 es par? ${12.esPar()}\n¿-2 es par? ${(-2).esPar()}\n¿13 es primo? ${13.esPrimo()}\n¿10 es primo? ${10.esPrimo()}")
+   println("-")
+
+   val myBook = Book().apply {
+      title = "Clean Code"
+      author = "Robert C. Martin"
+      pages = 464
+   }
+
+   println("""
+      Libro configurado con apply:
+      Título: ${myBook.title}
+      Autor: ${myBook.author}
+      Páginas: ${myBook.pages}
+   """.trimIndent())
+
+   println("-")
+
+   // Cuadrados de los números del 1 al 20 que sean múltiplos de 3
+   println((1..20).toList()        // Enteros del 1 al 20
+        .filter { it % 3 == 0 } // Filtra múltiplos de 3: [3, 6, 9, 12, 15, 18]
+        .map { it * it }        // Eleva al cuadrado: [9, 36, 81, 144, 225, 324]
+    )
+    println("-")
+
+    val movimientos = listOf(
+        Transaccion("Comida", 150.0),
+        Transaccion("Comida", 50.0),  // No debería entrar (monto < 100)
+        Transaccion("Comida", 250.0),
+        Transaccion("Salud", 500.0),
+        Transaccion("Transporte", 80.0), // No debería entrar
+        Transaccion("Salud", 1000.0)
+    )
+
+    val analisis = reporte(movimientos)
+
+    println("--- Reporte de Gastos (Promedios > $100) ---")
+    analisis.forEach { (cat, promedio) ->
+        println("Categoría: $cat | Promedio de gasto: $$promedio")
+    }
 }
