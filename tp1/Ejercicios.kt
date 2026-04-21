@@ -48,14 +48,6 @@ fun test2() {
    println("test 2 - La suma total de los montos es: $sumaTotalMontos")
 }
 
-fun sumaTotal(montos: Array<Double?>) : Double {
-   var total: Double = 0.0;
-
-   for (monto in montos) total += monto ?: 0.0  
-
-   return total
-}
-
 fun testDataClass() {
     
     val User1 = UserAccount("1234", "testCorreo@gmail.com", 10.99)
@@ -85,4 +77,12 @@ fun testDataClass() {
     // HashCode
     
     println(User1.hashCode())
+}
+
+fun sumaTotal(montos: Array<Double?>) : Double {
+   var total: Double = 0.0;
+
+   for (monto in montos) total += monto ?: 0.0  
+
+   return total
 }
