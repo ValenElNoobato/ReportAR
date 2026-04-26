@@ -1,0 +1,29 @@
+Entrando y saliendo de la aplicacion:
+---------------------------- PROCESS STARTED (11360) for package com.example.reportar ----------------------------
+2026-04-20 17:16:11.043 11360-11360 MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-20 17:16:11.307 11360-11360 MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-20 17:16:11.330 11360-11360 MainActivity            com.example.reportar                 I  onResume - Retomando aplicacion
+2026-04-20 17:16:11.330 11360-11360 MainActivity            com.example.reportar                 I  Estado: onResume ejecutándose - Resurrección número: 1
+2026-04-20 17:16:11.417 11360-11360 VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-20 17:16:16.502 11360-11360 MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-20 17:16:17.846 11360-11360 VRI[MainActivity]       com.example.reportar                 D  visibilityChanged oldVisibility=true newVisibility=false
+2026-04-20 17:16:17.880 11360-11360 MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-20 17:16:22.032 11360-11360 MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-20 17:16:22.032 11360-11360 MainActivity            com.example.reportar                 I  onResume - Retomando aplicacion
+2026-04-20 17:16:22.039 11360-11360 MainActivity            com.example.reportar                 I  Estado: onResume ejecutándose - Resurrección número: 2
+
+Rotando la pantalla:
+---------------------------- PROCESS STARTED (11499) for package com.example.reportar ----------------------------
+2026-04-20 17:18:27.815 11499-11499 MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-20 17:18:28.105 11499-11499 MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-20 17:18:28.119 11499-11499 MainActivity            com.example.reportar                 I  onResume - Retomando aplicacion
+2026-04-20 17:18:28.120 11499-11499 MainActivity            com.example.reportar                 I  Estado: onResume ejecutándose - Resurrección número: 1
+2026-04-20 17:18:28.202 11499-11499 VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-20 17:18:33.431 11499-11499 MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-20 17:18:33.501 11499-11499 MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-20 17:18:33.544 11499-11499 MainActivity            com.example.reportar                 I  onDestroy - Aplicacion destruida
+2026-04-20 17:18:33.797 11499-11499 MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-20 17:18:33.978 11499-11499 MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-20 17:18:34.006 11499-11499 MainActivity            com.example.reportar                 I  onResume - Retomando aplicacion
+2026-04-20 17:18:34.022 11499-11499 MainActivity            com.example.reportar                 I  Estado: onResume ejecutándose - Resurrección número: 1
+2026-04-20 17:18:34.246 11499-11499 VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 2400x1080 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 

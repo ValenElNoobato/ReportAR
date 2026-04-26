@@ -1,0 +1,48 @@
+Secuencia A
+---------------------------- PROCESS STARTED (9539) for package com.example.reportar ----------------------------
+2026-04-14 16:46:57.505  9539-9539  MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-14 16:46:57.781  9539-9539  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:46:57.796  9539-9539  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+2026-04-14 16:46:57.885  9539-9539  VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-14 16:47:09.394  9539-9539  MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-14 16:47:10.673  9539-9539  VRI[MainActivity]       com.example.reportar                 D  visibilityChanged oldVisibility=true newVisibility=false
+2026-04-14 16:47:10.761  9539-9539  MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-14 16:47:16.132  9539-9539  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:47:16.132  9539-9539  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+
+Secuencia B
+---------------------------- PROCESS STARTED (9711) for package com.example.reportar ----------------------------
+2026-04-14 16:48:17.946  9711-9711  MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-14 16:48:18.147  9711-9711  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:48:18.159  9711-9711  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+2026-04-14 16:48:18.234  9711-9711  VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-14 16:48:23.351  9711-9711  MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-14 16:48:24.710  9711-9711  VRI[MainActivity]       com.example.reportar                 D  visibilityChanged oldVisibility=true newVisibility=false
+2026-04-14 16:48:24.840  9711-9711  MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-14 16:48:24.849  9711-9711  MainActivity            com.example.reportar                 I  onDestroy - Aplicacion destruida
+
+Secuencia C
+---------------------------- PROCESS STARTED (9766) for package com.example.reportar ----------------------------
+2026-04-14 16:48:56.034  9766-9766  MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-14 16:48:56.241  9766-9766  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:48:56.283  9766-9766  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+2026-04-14 16:48:56.376  9766-9766  VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-14 16:49:02.674  9766-9766  MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-14 16:49:03.554  9766-9766  VRI[MainActivity]       com.example.reportar                 D  visibilityChanged oldVisibility=true newVisibility=false
+2026-04-14 16:49:05.886  9766-9766  MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-14 16:49:14.704  9766-9766  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:49:14.705  9766-9766  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+
+Secuencia D
+---------------------------- PROCESS STARTED (9966) for package com.example.reportar ----------------------------
+2026-04-14 16:49:40.187  9966-9966  MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-14 16:49:40.429  9966-9966  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:49:40.444  9966-9966  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+2026-04-14 16:49:40.494  9966-9966  VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+2026-04-14 16:49:46.853  9966-9966  MainActivity            com.example.reportar                 I  onPause - Aplicacion en pausa
+2026-04-14 16:49:46.860  9966-9966  MainActivity            com.example.reportar                 I  onStop - Aplicacion detenida
+2026-04-14 16:49:46.899  9966-9966  MainActivity            com.example.reportar                 I  onDestroy - Aplicacion destruida
+2026-04-14 16:49:47.115  9966-9966  MainActivity            com.example.reportar                 I  onCreate - Creando la aplicacion
+2026-04-14 16:49:47.203  9966-9966  MainActivity            com.example.reportar                 I  onStart - Aplicacion comenzando
+2026-04-14 16:49:47.235  9966-9966  MainActivity            com.example.reportar                 I  onPlay - Retomando aplicacion
+2026-04-14 16:49:47.364  9966-9966  VRI[MainActivity]       com.example.reportar                 D  WindowInsets changed: 2400x1080 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
