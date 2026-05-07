@@ -20,6 +20,7 @@ import com.example.practica.databinding.ItemListaBinding
 class ListaFragment : Fragment() {
 
     data class Item(
+        val id: Int,
         val titulo: String,
         val descripcion: String
     )
@@ -40,24 +41,23 @@ class ListaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val lista = listOf(
-            Item("Elemento 1", "Descripción 1"),
-            Item("Elemento 2", "Descripción 2"),
-            Item("Elemento 3", "Descripción 3"),
-            Item("Elemento 4", "Descripción 4")
+            Item(1, "Elemento 1", "Descripción 1"),
+            Item(2, "Elemento 2", "Descripción 2"),
+            Item(3, "Elemento 3", "Descripción 3"),
+            Item(4, "Elemento 4", "Descripción 4")
         )
 
         val adapter = ItemAdapter(lista) { item ->
-            Toast.makeText(requireContext(), item.titulo, Toast.LENGTH_SHORT).show()
+
+            val action =
+                ListaFragmentDirections
+                    .actionListaFragmentToDetalleFragment(item.id)
+
+            findNavController().navigate(action)
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
-        binding.buttonDetalle.setOnClickListener {
-
-            findNavController().navigate(
-                R.id.action_listaFragment_to_detalleFragment
-            )
-        }
     }
 
     override fun onDestroyView() {
