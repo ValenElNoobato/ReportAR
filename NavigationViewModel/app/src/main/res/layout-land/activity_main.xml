@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/mainContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:id="@+id/panelDetalle"
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_height="match_parent" />
+</LinearLayout>

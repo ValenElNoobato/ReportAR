@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listaFragment">
+
+    <fragment
+        android:id="@+id/listaFragment"
+        android:name="com.example.practica.ListaFragment"
+        android:label="Lista">
+
+        <action
+            android:id="@+id/action_listaFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.example.practica.DetalleFragment"
+        android:label="Detalle">
+
+        <action
+            android:id="@+id/action_detalleFragment_to_listaFragment"
+            app:destination="@id/listaFragment"/>
+    </fragment>
+
+</navigation>
