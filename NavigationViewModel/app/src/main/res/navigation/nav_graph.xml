@@ -3,7 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listaFragment">
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.practica.WelcomeFragment"
+        android:label="Bienvenida">
+
+        <action
+            android:id="@+id/action_welcomeFragment_to_listaFragment"
+            app:destination="@id/listaFragment"
+
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
     <fragment
         android:id="@+id/listaFragment"
