@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica.databinding.FragmentListaBinding
 import com.example.practica.databinding.ItemListaBinding
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -19,14 +23,9 @@ import com.example.practica.databinding.ItemListaBinding
  */
 class ListaFragment : Fragment() {
 
-    data class Item(
-        val id: Int,
-        val titulo: String,
-        val descripcion: String
-    )
-
     private var _binding: FragmentListaBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ListaViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,24 +39,32 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val lista = listOf(
-            Item(1, "Elemento 1", "Descripción 1"),
-            Item(2, "Elemento 2", "Descripción 2"),
-            Item(3, "Elemento 3", "Descripción 3"),
-            Item(4, "Elemento 4", "Descripción 4")
-        )
+        lifecycleScope.launch {
 
-        val adapter = ItemAdapter(lista) { item ->
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-            val action =
-                ListaFragmentDirections
-                    .actionListaFragmentToDetalleFragment(item.id)
+                viewModel.items.collect { lista ->
 
-            findNavController().navigate(action)
+                    val adapter = ItemAdapter(lista) { item ->
+
+                        val action =
+                            ListaFragmentDirections
+                                .actionListaFragmentToDetalleFragment(item.id)
+
+                        findNavController().navigate(action)
+                    }
+
+                    binding.recyclerView.layoutManager =
+                        LinearLayoutManager(requireContext())
+
+                    binding.recyclerView.adapter = adapter
+                }
+            }
         }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
+        binding.buttonRecargar.setOnClickListener {
+            viewModel.recargar()
+        }
     }
 
     override fun onDestroyView() {
