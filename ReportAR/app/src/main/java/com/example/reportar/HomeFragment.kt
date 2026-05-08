@@ -9,9 +9,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val tvWelcome = view.findViewById<TextView>(R.id.tvWelcome)
-
-        tvWelcome.text = "Bienvenido a la pantalla principal 👋"
     }
 }
