@@ -16,8 +16,8 @@
 
     <TextView
         android:id="@+id/tvInfo2"
-        android:layout_width="match_parent"
-        android:layout_height="284dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:text="Cada reporte generado por un usuario queda registrado en el sistema y puede ser visualizado por las entidades responsables de resolverlo. Estas entidades tienen la posibilidad de gestionar las solicitudes, actualizar el estado de la reparación y mantener informado al ciudadano sobre el progreso o resolución del incidente."
         android:textSize="24sp" />
