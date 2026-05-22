@@ -10,10 +10,10 @@
 **quiero** modificar la descripción de una incidencia que publiqué,
 **para** mejorar su descripción.
 
-## HU-3: Acceso
+## HU-3: Ver mis incidencias
 **Como** ciudadano,
-**quiero** acceder a mi cuenta,
-**para** hacer uso de todas las funcionalidades de la aplicación.
+**quiero** acceder a mis publicaciones,
+**para** ver el estado de las incidencias que publiqué.
 
 ## HU-4: Navegación en Mapa
 **Como** ciudadano,
