@@ -2,12 +2,13 @@ package com.example.reportar.presentation.ui.userMenu
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.reportar.R
+import com.example.reportar.databinding.FragmentUserMenuBinding
 import com.example.reportar.presentation.ui.about.AboutFragment
 import com.example.reportar.presentation.ui.login.LoginFragment
 import com.example.reportar.presentation.viewmodel.ProfileViewModel
@@ -16,6 +17,9 @@ import kotlinx.coroutines.launch
 
 class UserMenuFragment : Fragment(R.layout.fragment_user_menu) {
 
+    private var _binding: FragmentUserMenuBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: ProfileViewModel by activityViewModels {
         ProfileViewModelFactory()
     }
@@ -23,36 +27,53 @@ class UserMenuFragment : Fragment(R.layout.fragment_user_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tvUser = view.findViewById<TextView>(R.id.tvUser)
-        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
-        val btnInfo = view.findViewById<Button>(R.id.btnInfo)
+        _binding = FragmentUserMenuBinding.bind(view)
 
-        lifecycleScope.launch {
+        observeState()
 
-            viewModel.state.collect { state ->
+        setupListeners()
+    }
 
-                tvUser.text = "Bienvenido ${state.username}"
+    private fun observeState() {
 
-                if (!state.isLogged) {
+        viewLifecycleOwner.lifecycleScope.launch {
 
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.profileContainer, LoginFragment())
-                        .commit()
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                viewModel.state.collect { state ->
+
+                    binding.tvUser.text =
+                        "Bienvenido ${state.username}"
+
+                    if (!state.isLogged) {
+
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.profileContainer, LoginFragment())
+                            .commit()
+                    }
                 }
             }
         }
+    }
 
-        btnLogout.setOnClickListener {
+    private fun setupListeners() {
+
+        binding.btnLogout.setOnClickListener {
 
             viewModel.logout()
         }
 
-        btnInfo.setOnClickListener {
+        binding.btnInfo.setOnClickListener {
 
             parentFragmentManager.beginTransaction()
                 .replace(R.id.profileContainer, AboutFragment())
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

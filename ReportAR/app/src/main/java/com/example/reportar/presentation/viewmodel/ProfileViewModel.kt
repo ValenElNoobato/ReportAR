@@ -52,4 +52,17 @@ class ProfileViewModel(
             _state.value = ProfileState()
         }
     }
+
+    fun checkSession() {
+
+        val currentUser = getCurrentUserUseCase.execute()
+
+        if (currentUser != null) {
+
+            _state.value = _state.value.copy(
+                username = currentUser,
+                isLogged = true
+            )
+        }
+    }
 }
