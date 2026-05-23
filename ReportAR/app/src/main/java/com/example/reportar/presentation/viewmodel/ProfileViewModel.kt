@@ -1,16 +1,16 @@
 package com.example.reportar.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.reportar.data.repository.SessionRepositoryImpl
+import androidx.lifecycle.viewModelScope
 import com.example.reportar.domain.usecase.GetCurrentUserUseCase
 import com.example.reportar.domain.usecase.LoginUseCase
 import com.example.reportar.domain.usecase.LogoutUseCase
 import com.example.reportar.presentation.state.ProfileState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class ProfileViewModel(
-    private val repository: SessionRepositoryImpl,
     private val loginUseCase: LoginUseCase,
     private val logoutUseCase: LogoutUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase
@@ -22,28 +22,34 @@ class ProfileViewModel(
 
     fun login(user: String, pass: String) {
 
-        val success = loginUseCase.execute(user, pass)
+        viewModelScope.launch {
 
-        if (success) {
+            val success = loginUseCase.execute(user, pass)
 
-            _state.value = _state.value.copy(
-                username = user,
-                isLogged = true,
-                error = null
-            )
+            if (success) {
 
-        } else {
+                _state.value = _state.value.copy(
+                    username = user,
+                    isLogged = true,
+                    error = null
+                )
 
-            _state.value = _state.value.copy(
-                error = "Credenciales incorrectas"
-            )
+            } else {
+
+                _state.value = _state.value.copy(
+                    error = "Credenciales incorrectas"
+                )
+            }
         }
     }
 
     fun logout() {
 
-        logoutUseCase.execute()
+        viewModelScope.launch {
 
-        _state.value = ProfileState()
+            logoutUseCase.execute()
+
+            _state.value = ProfileState()
+        }
     }
 }

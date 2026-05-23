@@ -20,7 +20,6 @@ class ProfileViewModelFactory : ViewModelProvider.Factory {
         val getCurrentUserUseCase = GetCurrentUserUseCase(repository)
 
         return ProfileViewModel(
-            repository,
             loginUseCase,
             logoutUseCase,
             getCurrentUserUseCase
