@@ -1,17 +1,22 @@
-package com.example.reportar
+package com.example.reportar.presentation.ui.profile
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.reportar.presentation.ui.login.LoginFragment
+import com.example.reportar.R
+import com.example.reportar.presentation.ui.userMenu.UserMenuFragment
+import com.example.reportar.presentation.viewmodel.ProfileViewModel
+import com.example.reportar.presentation.viewmodel.ProfileViewModelFactory
+import kotlin.getValue
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
+
+    private val viewModel: ProfileViewModel by viewModels {
+        ProfileViewModelFactory()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
