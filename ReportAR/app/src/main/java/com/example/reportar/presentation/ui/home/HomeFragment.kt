@@ -1,5 +1,6 @@
 package com.example.reportar.presentation.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -11,6 +12,10 @@ import com.example.reportar.R
 import com.example.reportar.databinding.FragmentHomeBinding
 import com.example.reportar.presentation.viewmodel.HomeViewModel
 import kotlinx.coroutines.launch
+import org.osmdroid.config.Configuration
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -19,12 +24,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
+    private lateinit var map: MapView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentHomeBinding.bind(view)
 
+        setupMap()
+
         observeState()
+    }
+
+    private fun setupMap() {
+
+        Configuration.getInstance().load(
+            requireContext(),
+            requireContext().getSharedPreferences("osm", Context.MODE_PRIVATE)
+        )
+
+        map = binding.map
+
+        map.setMultiTouchControls(true)
+
+        val mapController = map.controller
+        mapController.setZoom(15.0)
+
+        // Puerto Madryn
+        val startPoint = GeoPoint(-42.7692, -65.0385)
+
+        mapController.setCenter(startPoint)
     }
 
     private fun observeState() {
@@ -39,6 +68,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        map.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        map.onPause()
     }
 
     override fun onDestroyView() {

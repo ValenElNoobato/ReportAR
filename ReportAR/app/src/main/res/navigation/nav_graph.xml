@@ -19,4 +19,19 @@
         android:name="com.example.reportar.presentation.ui.profile.ProfileFragment"
         android:label="Perfil" />
 
+    <fragment
+        android:id="@+id/incidentListFragment"
+        android:name="com.example.reportar.presentation.ui.incident.IncidentListFragment"
+        android:label="Incidentes">
+
+        <action
+            android:id="@+id/action_list_to_form"
+            app:destination="@id/incidentFormFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/incidentFormFragment"
+        android:name="com.example.reportar.presentation.ui.incident.IncidentFormFragment"
+        android:label="Formulario"/>
+
 </navigation>

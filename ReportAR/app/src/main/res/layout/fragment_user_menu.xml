@@ -20,6 +20,12 @@
         android:text="Cerrar sesión"/>
 
     <Button
+        android:id="@+id/btnIncident"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Incidentes"/>
+
+    <Button
         android:id="@+id/btnInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

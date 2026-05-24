@@ -7,9 +7,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.reportar.R
 import com.example.reportar.databinding.FragmentUserMenuBinding
 import com.example.reportar.presentation.ui.about.AboutFragment
+import com.example.reportar.presentation.ui.incident.IncidentListFragment
 import com.example.reportar.presentation.ui.login.LoginFragment
 import com.example.reportar.presentation.viewmodel.ProfileViewModel
 import com.example.reportar.presentation.viewmodel.ProfileViewModelFactory
@@ -69,6 +71,12 @@ class UserMenuFragment : Fragment(R.layout.fragment_user_menu) {
                 .replace(R.id.profileContainer, AboutFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+
+        binding.btnIncident.setOnClickListener {
+            findNavController().navigate(
+                R.id.incidentListFragment
+            )
         }
     }
 

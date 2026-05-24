@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
-</LinearLayout>
+        android:padding="16dp"
+        android:text="Bienvenido"
+        android:textSize="22sp"
+        map:layout_constraintBottom_toTopOf="@+id/map"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintStart_toStartOf="@+id/tvWelcome"
+        map:layout_constraintTop_toBottomOf="@+id/tvWelcome">
+
+    </org.osmdroid.views.MapView>
+</androidx.constraintlayout.widget.ConstraintLayout>
