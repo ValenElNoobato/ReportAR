@@ -1,4 +1,4 @@
-package com.example.reportar
+package com.example.reportar.domain.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater

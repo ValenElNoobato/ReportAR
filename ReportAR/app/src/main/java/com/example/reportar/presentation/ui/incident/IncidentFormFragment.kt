@@ -1,7 +1,9 @@
 package com.example.reportar.presentation.ui.incident
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
@@ -23,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -31,7 +34,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.reportar.ImageAdapter
+import com.example.reportar.domain.adapter.ImageAdapter
 import com.example.reportar.R
 import com.example.reportar.databinding.FragmentIncidentFormBinding
 import com.example.reportar.domain.model.Incident
@@ -169,6 +172,7 @@ class IncidentFormFragment :
         }
     }
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun setupListeners() {
 
         binding.btnSave.setOnClickListener {
@@ -257,6 +261,11 @@ class IncidentFormFragment :
                 }
             }
         )
+
+        binding.btnMyLocation.setOnClickListener {
+
+            centerOnUser()
+        }
     }
 
     private fun createImageUri(): Uri {
@@ -273,6 +282,7 @@ class IncidentFormFragment :
         )
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupMap() {
 
         binding.map.setMultiTouchControls(true)
@@ -289,10 +299,31 @@ class IncidentFormFragment :
         marker = Marker(binding.map)
 
         binding.map.overlays.add(marker)
+
+        binding.map.setOnTouchListener { view, event ->
+
+            when (event.action) {
+
+                MotionEvent.ACTION_DOWN -> {
+
+                    view.parent.requestDisallowInterceptTouchEvent(true)
+                }
+
+                MotionEvent.ACTION_UP,
+                MotionEvent.ACTION_CANCEL -> {
+
+                    view.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+
+            false
+        }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun centerOnUser() {
+
+        if (!hasLocationPermission()) return
 
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location ->
@@ -490,6 +521,13 @@ class IncidentFormFragment :
         }
     }
 
+    private fun hasLocationPermission(): Boolean {
+
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
