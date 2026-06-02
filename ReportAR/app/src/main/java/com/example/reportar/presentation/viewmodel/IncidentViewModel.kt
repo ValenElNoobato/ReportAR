@@ -37,14 +37,21 @@ class IncidentViewModel(
     fun selectIncident(incident: Incident) {
 
         _state.value = _state.value.copy(
-            selectedIncident = incident
+            selectedIncident = incident,
+            images = incident.imageUris,
+            tags = incident.tags,
+            latitude = incident.latitude,
+            longitude = incident.longitude
         )
     }
-
     fun clearSelectedIncident() {
 
         _state.value = _state.value.copy(
-            selectedIncident = null
+            selectedIncident = null,
+            images = emptyList(),
+            tags = emptyList(),
+            latitude = null,
+            longitude = null
         )
     }
 
@@ -67,5 +74,61 @@ class IncidentViewModel(
         deleteIncidentUseCase(id)
 
         loadIncidents()
+    }
+
+    fun addImage(uri: String) {
+
+        val updatedImages =
+            _state.value.images + uri
+
+        _state.value = _state.value.copy(
+            images = updatedImages,
+            currentImageIndex = updatedImages.lastIndex
+        )
+    }
+
+    fun removeImage(uri: String) {
+
+        _state.value = _state.value.copy(
+            images = _state.value.images - uri
+        )
+    }
+
+    fun setCurrentPhotoUri(uri: String) {
+
+        _state.value = _state.value.copy(
+            currentPhotoUri = uri
+        )
+    }
+
+    fun setLocation(
+        latitude: Double,
+        longitude: Double
+    ) {
+
+        _state.value = _state.value.copy(
+            latitude = latitude,
+            longitude = longitude
+        )
+    }
+
+    fun toggleTag(tag: String) {
+
+        val currentTags =
+            _state.value.tags
+
+        _state.value =
+            _state.value.copy(
+
+                tags =
+                    if (tag in currentTags) {
+
+                        currentTags - tag
+
+                    } else {
+
+                        currentTags + tag
+                    }
+            )
     }
 }

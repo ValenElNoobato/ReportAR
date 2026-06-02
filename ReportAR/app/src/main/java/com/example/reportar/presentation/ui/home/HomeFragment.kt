@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
