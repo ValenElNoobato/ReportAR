@@ -56,54 +56,34 @@ class IncidentMapController (
 
         if (mapInitialized) return
 
-        val incident = state.selectedIncident
+        state.selectedIncident?.let {
 
-        if (
-            incident != null &&
-            incident.latitude != 0.0 &&
-            incident.longitude != 0.0
-        ) {
+            if (
+                it.latitude != 0.0 &&
+                it.longitude != 0.0
+            ) {
 
-            centerOnIncident(
-                incident.latitude,
-                incident.longitude
-            )
-
+                moveToLocation(
+                    it.latitude,
+                    it.longitude
+                )
+            }
         }
 
         mapInitialized = true
     }
 
-    fun centerOnIncident(
-        latitude: Double,
-        longitude: Double
-    ) {
-
-        val point = GeoPoint(
-            latitude,
-            longitude
-        )
-
-        marker.position = point
-
-        map.controller.setZoom(16.0)
-
-        map.controller.animateTo(point)
-
-        map.invalidate()
-    }
-
     fun moveToLocation(
         latitude: Double,
-        longitude: Double
+        longitude: Double,
+        zoom: Double = 16.0
     ) {
 
-        val point =
-            GeoPoint(latitude, longitude)
+        val point = GeoPoint(latitude, longitude)
 
         marker.position = point
 
-        map.controller.setZoom(16.0)
+        map.controller.setZoom(zoom)
 
         map.controller.animateTo(point)
 
